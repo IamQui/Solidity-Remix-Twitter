@@ -34,6 +34,16 @@ contract Twitter {
         MAX_TWEET_LENGTH = newTweetLength;
     }
 
+    function getTotalLikes(address _author) external view returns (uint256) {
+        uint256 totalLikes;
+        
+        for (uint256 i = 0; i < tweets[_author].length; i++){
+            totalLikes += tweets[_author][i].likes;
+        }
+
+        return totalLikes;
+    }
+
     function createtweet(string memory _tweet) public {
         require(bytes(_tweet).length <= MAX_TWEET_LENGTH, "You shall not pass!");
 
